@@ -4,7 +4,7 @@ using UnityEngine;
 public class ToothManager : MonoBehaviour {
   public List<GameObject> teeth;
   public Color infectionColor;
-
+	public GameObject newTooth;
   public float nextInfectionDelay = 1.0f;
   private float _elapsedTime = 0.0f;
 

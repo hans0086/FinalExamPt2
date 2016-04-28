@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class Infection : MonoBehaviour {
   public Color infectedColor = Color.white;
-
+	//private Text healthText = GameObject.Find("Health");
   private Tooth _tooth;
   private Color _oldColor = Color.white;
-
+	private float decayTimer = 0.0f;
   private float _elapsedTime = 0.0f;
 
   // Use this for initialization
@@ -22,11 +22,22 @@ public class Infection : MonoBehaviour {
 
   // Update is called once per frame
   void Update() {
-    if(_elapsedTime < 1.0f) {
-      _elapsedTime += Time.deltaTime;
+		if (_elapsedTime < 1.0f) {
+			_elapsedTime += Time.deltaTime;
 
-      _tooth.toothMaterial.color = Color.Lerp(_oldColor, infectedColor, _elapsedTime);
-    }
+			_tooth.toothMaterial.color = Color.Lerp (_oldColor, infectedColor, _elapsedTime);
+			if (_tooth.toothMaterial.color.Equals (infectedColor)) {
+				if (decayTimer == 2.0f) {
+					decayTimer = 0.0f;
+
+					//int healthAmt = int.Parse (healthText.text);
+					//healthAmt -= 5;
+					//healthText.text = healthAmt.ToString ();
+				}
+			}
+		}
+		
+    
   }
 
   public void OnCollisionEnter(Collision collision) {
